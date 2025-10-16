@@ -1,7 +1,6 @@
 import {
   vitePlugin as remix,
 } from '@remix-run/dev';
-import { vercelPreset } from '@vercel/remix/vite';
 import { defineConfig } from 'vite';
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
@@ -24,12 +23,6 @@ export default defineConfig({
   ssr: {
     noExternal: ['react-dom/server']
   },
-  optimizeDeps: {
-    include: ['react-dom/server']
-  },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-  },
   server: {
     port: 7777,
   },
@@ -40,7 +33,6 @@ export default defineConfig({
       providerImportSource: '@mdx-js/react',
     }),
     remix({
-      presets: [vercelPreset()],
       routes(defineRoutes) {
         return defineRoutes(route => {
           route('/', 'routes/home/route.js', { index: true });
