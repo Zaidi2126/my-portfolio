@@ -47,11 +47,6 @@ export const links = () => [
 ];
 
 export const loader = async ({ request }) => {
-  const { url } = request;
-  const { pathname } = new URL(url);
-  const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
-  const canonicalUrl = `${config.url}${pathnameSliced}`;
-
   const { getSession, commitSession } = createCookieSessionStorage({
     cookie: {
       name: '__session',
@@ -68,7 +63,7 @@ export const loader = async ({ request }) => {
   const theme = session.get('theme') || 'dark';
 
   return json(
-    { canonicalUrl, theme },
+    { theme },
     {
       headers: {
         'Set-Cookie': await commitSession(session),
@@ -78,7 +73,7 @@ export const loader = async ({ request }) => {
 };
 
 export default function App() {
-  let { canonicalUrl, theme } = useLoaderData();
+  let { theme } = useLoaderData();
   const fetcher = useFetcher();
   const { state } = useNavigation();
 
