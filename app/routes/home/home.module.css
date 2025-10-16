@@ -1,0 +1,12 @@
+.home {
+  overflow-x: hidden;
+}
+
+.projectsSection {
+  margin: var(--space5XL) 0 var(--space3XL);
+  text-align: center;
+}
+
+.projectsHeading {
+  color: var(--textLight);
+}
