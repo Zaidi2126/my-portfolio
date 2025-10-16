@@ -89,6 +89,7 @@ export function TechStack() {
     ) },
     { key: 'powerbi', label: 'Power BI', icon: '📊' },
   ];
+  
 
   return (
     <Section as="section" className={styles.section} id="stack">
