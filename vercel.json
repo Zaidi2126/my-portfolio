@@ -3,10 +3,5 @@
   "outputDirectory": "build/client",
   "framework": "remix",
   "installCommand": "npm install",
-  "regions": ["iad1"],
-  "functions": {
-    "app/root.jsx": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "regions": ["iad1"]
 }
