@@ -14,10 +14,8 @@ import { ThemeProvider } from '~/components/theme-provider';
 import { VisuallyHidden } from '~/components/visually-hidden';
 import { Navbar } from '~/layouts/navbar';
 import { Footer } from '~/components/footer';
-import { ErrorBoundary } from '~/layouts/error';
 import { useLoaderData } from '@remix-run/react';
 import { useFetcher } from '@remix-run/react';
-import { useEffect } from 'react';
 
 export const links = () => [
   { rel: 'preload', href: '/fonts/ipa-gothic.woff2', as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
