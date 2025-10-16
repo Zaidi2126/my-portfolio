@@ -20,6 +20,9 @@ export default defineConfig({
       }
     }
   },
+  ssr: {
+    noExternal: ['react-dom/server']
+  },
   server: {
     port: 7777,
   },
