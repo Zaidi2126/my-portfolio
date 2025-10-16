@@ -22,14 +22,10 @@ export default defineConfig({
     }
   },
   ssr: {
-    noExternal: ['react-dom/server', 'react-dom'],
-    external: []
+    noExternal: ['react-dom/server']
   },
   optimizeDeps: {
-    include: ['react-dom/server', 'react-dom']
-  },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+    include: ['react-dom/server']
   },
   server: {
     port: 7777,
