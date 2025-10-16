@@ -27,6 +27,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react-dom/server']
   },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+  },
   server: {
     port: 7777,
   },
