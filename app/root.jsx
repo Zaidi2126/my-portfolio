@@ -52,29 +52,11 @@ export const loader = async ({ request }) => {
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
   const canonicalUrl = `${config.url}${pathnameSliced}`;
 
-  const { getSession, commitSession } = createCookieSessionStorage({
-    cookie: {
-      name: '__session',
-      httpOnly: true,
-      maxAge: 604_800,
-      path: '/',
-      sameSite: 'lax',
-      secrets: [process.env.SESSION_SECRET || 'fallback-secret-key'],
-      secure: process.env.NODE_ENV === 'production',
-    },
+  // Simplified loader - no session handling for now to debug infinite reload
+  return json({
+    canonicalUrl,
+    theme: 'dark' // Fixed theme to avoid session issues
   });
-
-  const session = await getSession(request.headers.get('Cookie'));
-  const theme = session.get('theme') || 'dark';
-
-  return json(
-    { canonicalUrl, theme },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
-  );
 };
 
 export default function App() {
@@ -87,10 +69,11 @@ export default function App() {
   }
 
   function toggleTheme(newTheme) {
-    fetcher.submit(
-      { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
-      { action: '/api/set-theme', method: 'post' }
-    );
+    // Temporarily disabled theme switching to debug infinite reload issue
+    // fetcher.submit(
+    //   { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
+    //   { action: '/api/set-theme', method: 'post' }
+    // );
   }
 
   useEffect(() => {
