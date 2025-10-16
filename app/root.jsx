@@ -59,8 +59,8 @@ export const loader = async ({ request }) => {
       maxAge: 604_800,
       path: '/',
       sameSite: 'lax',
-      secrets: [process.env.SESSION_SECRET || ' '],
-      secure: true,
+      secrets: [process.env.SESSION_SECRET || 'fallback-secret-key'],
+      secure: process.env.NODE_ENV === 'production',
     },
   });
 
