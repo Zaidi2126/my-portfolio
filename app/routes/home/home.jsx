@@ -19,7 +19,7 @@ import profilePlaceholder from '~/assets/laptop-holder.png';
 import fallbackImg from '~/assets/profile.jpg';
 import { Footer } from '~/components/footer';
 import { Heading } from '~/components/heading';
-import { baseMeta } from '~/utils/meta';
+import { json } from '@remix-run/node';
 import { Intro } from './intro';
 import { TechStack } from './tech-stack';
 import { Profile } from './profile';
@@ -27,6 +27,11 @@ import { ProjectSummary } from './project-summary';
 import { useEffect, useRef, useState, createRef } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
+
+// Add a simple loader to fix hydration mismatch
+export const loader = async ({ request }) => {
+  return json({});
+};
 
 // Prefetch draco decoader wasm
 export const links = () => {
